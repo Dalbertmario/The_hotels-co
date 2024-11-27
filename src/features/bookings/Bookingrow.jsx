@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react';
 import datetimeformate from '../../helper/dateformate';
 import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
+import Moneyformate from '../../helper/Moneyformate';
+import { HiDotsHorizontal } from 'react-icons/hi';
 const Bookingrow = ({ bookings = [], guestdata = [] }) => {
   const [treebtn, settreeBtn] = useState(false);
   const [position, setPosition] = useState({});
@@ -22,7 +24,7 @@ const Bookingrow = ({ bookings = [], guestdata = [] }) => {
     if (btnref.current && btnref.current.contains(e.target)) {
       const rect = e.target.getBoundingClientRect();
       setPosition({
-        x: window.innerWidth - rect.width - rect.x + 10,
+        x: window.innerWidth - rect.width - rect.x + 30,
         y: rect.y - rect.height + 2,
       });
     }
@@ -56,9 +58,11 @@ const Bookingrow = ({ bookings = [], guestdata = [] }) => {
         >
           {status}
         </h1>
-        <h1 className="content-center">{totalprice}</h1>
+        <h1 className="content-center xs:text-[9px]">
+          {Moneyformate(totalprice)}
+        </h1>
         <button onClick={handelTree} ref={btnref}>
-          ...
+          <HiDotsHorizontal />
         </button>
       </div>
       {treebtn && (

@@ -1,5 +1,6 @@
-function datetimeformate(date) {
+function datetimeformate(date = []) {
   const parsedate = new Date(date);
+
   return new Intl.DateTimeFormat('en', {
     month: 'short',
     year: 'numeric',

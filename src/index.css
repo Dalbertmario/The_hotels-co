@@ -31,7 +31,7 @@
 }
 
 .sortingbooking {
-  @apply hover:bg-violet-500 pr-1 py-2 p-1 font-semibold text-black rounded-md transition-all;
+  @apply hover:bg-violet-500 pr-1 p-1 font-semibold text-black rounded-md transition-all;
 }
 
 .sortbtn {
@@ -45,7 +45,7 @@
 }
 
 .date {
-  @apply gap-1 xs:flex-row xs:max-w-[30px] m-auto xl:flex-row justify-center items-center p-3;
+  @apply gap-1 xs:flex-row xs:max-w-[30px] m-auto xl:flex-row justify-center items-center;
 }
 
 .books {

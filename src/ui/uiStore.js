@@ -9,12 +9,40 @@ const initialState = {
   noDiscountbtn: false,
   allCabin: true,
   selectingSort: '',
+  guestAll: true,
+  checkedOut: false,
+  checkIn: false,
+  unconfirmed: false,
 };
 
 const Uireducer = createSlice({
   name: 'uistore',
   initialState,
   reducers: {
+    toggelguestAll: (state) => {
+      state.guestAll = true;
+      state.checkIn = false;
+      state.checkedOut = false;
+      state.unconfirmed = false;
+    },
+    toggelguestCheckedOut: (state) => {
+      state.checkedOut = !state.checkedOut;
+      state.guestAll = false;
+      state.checkIn = false;
+      state.unconfirmed = false;
+    },
+    toggleguestCheckIn: (state) => {
+      state.checkIn = !state.checkIn;
+      state.guestAll = false;
+      state.checkedOut = false;
+      state.unconfirmed = false;
+    },
+    toggleguestUnconfirmed: (state) => {
+      state.guestAll = false;
+      state.checkIn = false;
+      state.checkIn = false;
+      state.unconfirmed = !state.unconfirmed;
+    },
     toggelBtntree: (state) => {
       state.treeBtn = !state.treeBtn;
     },
@@ -33,7 +61,7 @@ const Uireducer = createSlice({
       state.allCabin = false;
     },
     noDisocunt: (state, action) => {
-      state.noDiscountbtn = !state.noDiscount;
+      state.noDiscountbtn = !state.noDiscountbtn;
       state.wDiscount = false;
       state.allCabin = false;
     },
@@ -57,5 +85,9 @@ export const {
   noDisocunt,
   allcabindata,
   selecting,
+  toggelguestAll,
+  toggelguestCheckedOut,
+  toggleguestCheckIn,
+  toggleguestUnconfirmed,
 } = Uireducer.actions;
 export default Uireducer.reducer;

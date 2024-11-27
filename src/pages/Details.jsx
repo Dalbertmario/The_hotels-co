@@ -1,15 +1,14 @@
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
-import {
-  useSearchParams,
-  useParams,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import datetimeformate from '../helper/dateformate';
+import Moneyformate from '../helper/Moneyformate';
 
 const Details = () => {
   const { id } = useParams();
   const [bookingdata = [], setData] = useState();
+  const [isLoading, setLoading] = useState(false);
   const [guestdata = [], setGuest] = useState();
   const gg = useLocation();
   const back = useNavigate();
@@ -17,6 +16,7 @@ const Details = () => {
   useEffect(() => {
     async function fetchData() {
       try {
+        setLoading(false);
         const response = await fetch(
           `http://localhost:3000/hotel/bookings/${id}`,
         );
@@ -25,6 +25,8 @@ const Details = () => {
         setData(result);
       } catch (err) {
         console.log(err.message);
+      } finally {
+        setLoading(true);
       }
     }
     fetchData();
@@ -58,6 +60,7 @@ const Details = () => {
   function handelBack() {
     back(-1);
   }
+  console.log(isLoading);
   return (
     <div className="h-[89vh] flex flex-col max-w-[1400px] m-auto">
       <div className="flex justify-between mb-5">
@@ -70,7 +73,15 @@ const Details = () => {
           >
             {status}
           </h1>
-          <button className="text-red-700 text-medium">Back</button>
+          <button className="text-red-700 text-medium">
+            <span
+              onClick={handelBack}
+              className="flex justify-center content-center items-center transition-all hover:translate-x-1"
+            >
+              <IoMdArrowRoundBack />
+              <h1>Back</h1>
+            </span>
+          </button>
         </div>
       </div>
       <div>
@@ -103,14 +114,15 @@ const Details = () => {
               `${status === 'Unconfirmed' && 'font-semibold text-amber-600'} ${status === 'Checked In' && 'bg-green-100 text-green-600'} flex justify-between  bg-amber-200 rounded-md`,
             )}
           >
-            Total price {totalprice}
+            Total price {Moneyformate(totalprice)}
           </h1>
           <h1
             className={clsx(
               `${status === 'Unconfirmed' && 'font-semibold text-amber-600'} ${status === 'Checked In' && 'bg-green-100 text-semibold text-green-600'}`,
             )}
           >
-            {status === 'Unconfirmed' && 'WILL PAY AT PROPERTY'}{' '}
+            {status === 'Unconfirmed' && 'WILL PAY AT PROPERTY'}
+            {status === 'Checked Out' && 'PAID'}
             {status === 'Confimed' && 'PAID'}
             {status === 'Checked In' && 'PAID'}
           </h1>
@@ -118,12 +130,12 @@ const Details = () => {
       </div>
 
       <div className="flex flex-row gap-3 item-right p-3">
-        <button className="bg-red-500 p-2  text-white rounded-sm">
+        <button className="bg-red-500 p-2 font-medium text-white rounded-md hover:bg-red-600 transition-all ">
           Delete booking
         </button>
         <button
           onClick={handelBack}
-          className="bg-slate-500 p-2  text-white rounded-sm"
+          className="bg-slate-500 p-2  text-white rounded-md font-medium hover:bg-slate-600 transition-all"
         >
           Back
         </button>

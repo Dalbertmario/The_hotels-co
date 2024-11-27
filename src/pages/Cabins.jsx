@@ -19,8 +19,6 @@ const Cabins = () => {
     allCabin,
     selectingSort,
   } = useSelector((state) => state.uistore);
-  console.log(selectingSort);
-  //   console.log(wDiscount, noDiscount);
   const dispatch = useDispatch();
   function handleFormClick() {
     dispatch(toggelFromBtn());
@@ -31,7 +29,7 @@ const Cabins = () => {
   const cabinlenDis = cabinNoDis.length;
   console.log(cabinlenDis);
   return (
-    <div className="flex flex-col gap-5  max-w-[1400px] m-auto">
+    <div className="flex flex-col gap-5  max-w-[1400px] m-auto ">
       <CabinSorting />
       <div>
         <div className="bg-slate-300 p-3 rounded-t-lg">

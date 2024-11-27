@@ -16,7 +16,7 @@ function UseGetBooking() {
     queryKey: ['bookings'],
     queryFn: getBooking,
   });
-  return { bookingdata };
+  return { bookingdata, isLoading };
 }
 
 export default UseGetBooking;
