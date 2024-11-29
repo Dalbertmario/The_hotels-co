@@ -17,7 +17,7 @@ const Aside = () => {
     dispatch(toggelBtntree());
   }
   return (
-    <aside className="flex flex-col bg-slate-200 h-screen gap-10 w-[200px] p-5">
+    <aside className="flex flex-col bg-white h-screen gap-10 w-[200px] p-5">
       <button onClick={handelClick} className="xl:hidden 2xl:hidden">
         <FiAlignJustify />
       </button>

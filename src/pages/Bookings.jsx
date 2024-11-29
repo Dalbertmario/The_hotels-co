@@ -6,6 +6,7 @@ import BookingHeader from '../ui/BookingHeader';
 import UseFetchGuest from '../features/bookings/GetGuests';
 import BookingFooter from '../ui/BookingFooter';
 import { useSelector } from 'react-redux';
+import datetimeformate from '../helper/dateformate';
 
 const Bookings = () => {
   const { bookingdata = [], isLoading } = UseGetBooking();
@@ -22,7 +23,7 @@ const Bookings = () => {
   const bookCheckedOut = bookingdata.filter(
     (el) => el.status === 'Checked Out',
   );
-  console.log(selectingSort);
+
   return (
     <div className="flex flex-col gap-4 max-w-[1400px] m-auto min-h-[89vh]">
       <BookingSorting />

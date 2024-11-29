@@ -32,7 +32,7 @@ const Bookingrow = ({ bookings = [], guestdata = [] }) => {
   }
   return (
     <div>
-      <div className="grid grid-cols-[0.1fr_0.5fr_0.3fr_0.4fr_0.3fr_0.1fr] gap-1 text-xs border border-slate-100 text-center p-1 bg-white">
+      <div className="grid grid-cols-[0.1fr_0.5fr_0.3fr_0.4fr_0.3fr_0.1fr] gap-1 text-xs border border-slate-100 bg-white text-center p-1 bg-white">
         <h1 className="content-center font-semibold font-medium text-slate-800  xl:text-[12px] xs:text-xs">
           {cabin_id}
         </h1>
@@ -77,7 +77,7 @@ const Bookingrow = ({ bookings = [], guestdata = [] }) => {
           <button className="hover:bg-slate-200 p-2">
             <NavLink
               to={`/bookings/${booking_id}`}
-              state={{ cabinid: cabin_id }}
+              state={{ guest_id: bookTguest_id }}
             >
               See details
             </NavLink>

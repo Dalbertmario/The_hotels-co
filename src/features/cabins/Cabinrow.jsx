@@ -4,6 +4,7 @@ import UseCopyCabin from './UseCopyCabin';
 import UseDeleteCabin from './UseDeleteCabin';
 import { useDispatch } from 'react-redux';
 import { EditBtn, FormEditData, toggelFromBtn } from '../../ui/uiStore';
+import Moneyformate from '../../helper/Moneyformate';
 
 const Cabinrow = ({ cabin, len }) => {
   const { mutate: Copycabin } = UseCopyCabin();
@@ -68,17 +69,17 @@ const Cabinrow = ({ cabin, len }) => {
   console.log(id);
   return (
     <>
-      <div className="grid grid-cols-[1fr_1fr_2fr_1fr_1fr_0.1fr] items-center py-2 border border-slate-200 gap-2">
+      <div className="grid grid-cols-[1fr_1fr_2fr_1fr_1fr_0.1fr] items-center py-2 border border-slate-200 gap-2 bg-white">
         {!img && !description && !price && !discount && !id && (
           <h1>There no cabins available</h1>
         )}
         <div className="flex justify-center">
           <h1>{id}</h1>
         </div>
-        <div className="flex justify-center max-w-[200px] m-auto ">
+        <div className="flex justify-center max-w-[200px] min-w-[70px] m-auto ">
           <img
             src={img}
-            className="rounded-md box-shadow-md max-h-[100px] 
+            className="rounded-md box-shadow-md min-h-[50px] max-h-[100px] 
             "
           />
         </div>
@@ -86,14 +87,14 @@ const Cabinrow = ({ cabin, len }) => {
           <h1>{description}</h1>
         </div>
         <div className="flex justify-center">
-          <h1>{price}</h1>
+          <h1 className="text-xs">{Moneyformate(price)}</h1>
         </div>
         <div className="flex justify-center">
-          <h1>
+          <h1 className="text-green-500 font-semibold text-xs">
             {(discount === 0 && (
-              <h1 className="font-semibold text-red">---</h1>
+              <h1 className="text-green-600 text-xs">---</h1>
             )) ||
-              discount}
+              Moneyformate(discount)}
           </h1>
         </div>
 

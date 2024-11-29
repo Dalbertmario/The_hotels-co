@@ -15,7 +15,7 @@
 }
 
 .sorting {
-  @apply hover:bg-violet-500 2xl:p-2 xs:p-1 font-semibold text-black rounded-md transition-all;
+  @apply bg-violet-600 md:p-2 text-white font-semibold rounded-md transition-all;
 }
 
 .select {
@@ -35,7 +35,7 @@
 }
 
 .sortbtn {
-  @apply xs:text-xs bg-slate-300 rounded-md xl:text-[14px] xs:text-xs text-[15px];
+  @apply xs:text-xs bg-white p-1 rounded-md xl:text-[14px] xs:text-xs text-[15px] hover:text-white;
 }
 .mail {
   @apply xs:text-[9px] xl:text-[12px] 2xl:text-[13px];
@@ -50,4 +50,27 @@
 
 .books {
   @appy grid grid-col-[0.1fr_0.5fr_0.3fr_0.4fr_0.3fr_0.1fr] gap-1 text-xs border border-slate-100 text-center p-1 bg-white;
+}
+
+.checkBtn {
+  @apply bg-blue-600 text-white font-medium text-xs transition-all hover:bg-blue-800 px-1 rounded-md;
+}
+
+.today {
+  @apply flex gap-3 xl:flex-row md:flex-row justify-center xs:flex-col;
+}
+
+.dash {
+  @apply flex md:flex-row xl:gap-2  xs:flex-col gap-2;
+}
+.dashdetails {
+  @apply text-xl font-medium xs:text-sm md:text-xl;
+}
+
+.graph {
+  @apply p-10 flex justify-center xs:max-w-[300px];
+}
+
+.bg {
+  @apply bg-white rounded-md font-semibold text-slate-600;
 }

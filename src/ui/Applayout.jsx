@@ -7,6 +7,7 @@ import clsx from 'clsx';
 
 const Applayout = () => {
   const { treeBtn, formBtn } = useSelector((state) => state.uistore);
+  console.log(treeBtn);
   return (
     <div className={clsx(`flex flex-row ${formBtn && 'blur fixed'} `)}>
       <div
@@ -18,7 +19,7 @@ const Applayout = () => {
       </div>
       <div
         className={clsx(
-          `${(treeBtn && 'blur-sm xs:fixed') || ''} w-screen h-screen overflow-scroll`,
+          `${(treeBtn && 'blur-sm xs:fixed') || ''}  w-screen h-screen overflow-scroll`,
         )}
       >
         <div>

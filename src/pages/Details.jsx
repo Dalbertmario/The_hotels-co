@@ -12,7 +12,9 @@ const Details = () => {
   const [guestdata = [], setGuest] = useState();
   const gg = useLocation();
   const back = useNavigate();
-  const guestID = gg.state.cabinid;
+  const guestID = gg.state.guest_id;
+  const bookstate = gg.state.status;
+  console.log(bookstate);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -130,8 +132,14 @@ const Details = () => {
       </div>
 
       <div className="flex flex-row gap-3 item-right p-3">
-        <button className="bg-red-500 p-2 font-medium text-white rounded-md hover:bg-red-600 transition-all ">
-          Delete booking
+        <button
+          className={clsx(
+            `${(bookstate && 'bg-blue-500 text-white p-2 hover:bg-blue-600 rounded-md transition-all font-medium px-5') || 'bg-red-500 p-2 font-medium text-white rounded-md hover:bg-red-600 transition-all px-5'}`,
+          )}
+        >
+          {(bookstate === 'check in' && `Check In #${booking_id}`) ||
+            (bookstate === 'check out' && `check out  #${booking_id}`) ||
+            'Delete booking'}
         </button>
         <button
           onClick={handelBack}

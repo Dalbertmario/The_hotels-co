@@ -8,6 +8,7 @@ import morgan from 'morgan';
 import clientrouter from './server/router/cabins/index.js';
 import bookingRouter from './server/router/bookings/index.js';
 import GuestRouter from './server/router/Guest/index.js';
+import DashboardRouter from './server/router/dashboard/index.js';
 const app = express();
 app.use(cors());
 app.use(morgan('dev'));
@@ -40,6 +41,7 @@ client
 app.use('/hotel', clientrouter(client, S3));
 app.use('/hotel', bookingRouter(client));
 app.use('/hotel', GuestRouter(client));
+app.use('/hotel', DashboardRouter(client));
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
