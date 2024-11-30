@@ -33,14 +33,10 @@ const CabinForm = ({ edit }) => {
     dispatch(toggelFromBtn());
   }
   return (
-    <div
-      className={clsx(
-        `bg-slate-200 rounded-md ${'xs:max-w-[400px] h-[400px]'} w-[1000px] h-[600px] xs:min-w-[0px] `,
-      )}
-    >
+    <div className={clsx(`formms`)}>
       <form onSubmit={handleSubmit(handelform)}>
         <div className=" gap-5 m-auto ">
-          <div className="flex justify-between p-4">
+          <div className="flex justify-between p-5">
             <label className="font-semibold text-md ">Cabin price</label>
             <input
               className="outline-focus"

@@ -14,6 +14,7 @@ const Header = () => {
       <h1 className="xl:hidden cursor-pointer" onClick={handelClick}>
         <BsThreeDotsVertical />
       </h1>
+      <h1>adadasdasd</h1>
     </div>
   );
 };

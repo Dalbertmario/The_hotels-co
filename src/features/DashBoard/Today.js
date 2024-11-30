@@ -12,11 +12,11 @@ async function Today() {
 }
 
 function UseToday() {
-  const { data: todayData } = useQuery({
+  const { data: todayData, isLoading: todaydataLoading } = useQuery({
     queryKey: ['today'],
     queryFn: Today,
   });
-  return { todayData };
+  return { todayData, todaydataLoading };
 }
 
 export default UseToday;

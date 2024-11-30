@@ -18,7 +18,7 @@ const Cabinrow = ({ cabin, len }) => {
     const rect = e.target.getBoundingClientRect();
     console.log(rect);
     setPosition({
-      x: window.innerWidth - rect.width - rect.x + 10,
+      x: window.innerWidth - rect.width - rect.x + 20,
       y: rect.y - rect.height + 2,
     });
     setClick((e) => (e = !e));
@@ -65,11 +65,10 @@ const Cabinrow = ({ cabin, len }) => {
     },
     [treeBtn],
   );
-  console.log(len);
-  console.log(id);
+
   return (
     <>
-      <div className="grid grid-cols-[1fr_1fr_2fr_1fr_1fr_0.1fr] items-center py-2 border border-slate-200 gap-2 bg-white">
+      <div className="grid grid-cols-[1fr_1fr_2fr_1fr_1fr_0.1fr] items-center py-2 border border-slate-200 gap-2 bg-white ">
         {!img && !description && !price && !discount && !id && (
           <h1>There no cabins available</h1>
         )}

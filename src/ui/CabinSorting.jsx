@@ -9,13 +9,19 @@ const CabinSorting = () => {
     (state) => state.uistore,
   );
   function handelWithDiscount() {
-    dispatch(WithDisount());
+    if (!wDiscount) {
+      dispatch(WithDisount());
+    }
   }
   function handelNoDiscount() {
-    dispatch(noDisocunt());
+    if (!noDiscountbtn) {
+      dispatch(noDisocunt());
+    }
   }
   function handelAllcabin() {
-    dispatch(allcabindata());
+    if (!allCabin) {
+      dispatch(allcabindata());
+    }
   }
   function seletingCabinSort(val) {
     dispatch(selecting(val));

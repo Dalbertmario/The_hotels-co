@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
 import Moneyformate from '../../helper/Moneyformate';
 import { HiDotsHorizontal } from 'react-icons/hi';
-const Bookingrow = ({ bookings = [], guestdata = [] }) => {
+import Loading from '../../ui/Loading';
+const Bookingrow = ({ bookings = [], guestdata = [], isLoading }) => {
   const [treebtn, settreeBtn] = useState(false);
   const [position, setPosition] = useState({});
   const btnref = useRef(null);
@@ -24,21 +25,22 @@ const Bookingrow = ({ bookings = [], guestdata = [] }) => {
     if (btnref.current && btnref.current.contains(e.target)) {
       const rect = e.target.getBoundingClientRect();
       setPosition({
-        x: window.innerWidth - rect.width - rect.x + 30,
+        x: window.innerWidth - rect.width - rect.x + 10,
         y: rect.y - rect.height + 2,
       });
     }
     settreeBtn((e) => !e);
   }
+  console.log(isLoading);
   return (
     <div>
-      <div className="grid grid-cols-[0.1fr_0.5fr_0.3fr_0.4fr_0.3fr_0.1fr] gap-1 text-xs border border-slate-100 bg-white text-center p-1 bg-white">
+      <div className="grid bookgrid text-xs border border-slate-100 bg-white text-center p-1 bg-white">
         <h1 className="content-center font-semibold font-medium text-slate-800  xl:text-[12px] xs:text-xs">
           {cabin_id}
         </h1>
-        <div className="flex flex-col shrink-1 justify-center">
+        <div className="flex flex-col gap-2 p-2 justify-center">
           <h1 className="font-medium text-slate-800">{guestdatas?.fullname}</h1>
-          <h1 className="mail font-semibold text-slate-500">
+          <h1 className="mail font-semibold text-slate-500 ">
             {guestdatas?.email}
           </h1>
         </div>
@@ -53,7 +55,7 @@ const Bookingrow = ({ bookings = [], guestdata = [] }) => {
         </div>
         <h1
           className={clsx(
-            `${status === 'Checked In' && 'bg-green-200 text-green-900 p-1'} ${status === 'Checked Out' && 'bg-gray-300 text-grey-900 p-1'} ${status === 'Unconfirmed' && 'bg-blue-200 text-blue-800'} rounded-md font-semibold max-h-10 py-1 m-auto`,
+            `${status === 'Checked In' && 'bg-green-200 text-green-900 p-1'} ${status === 'Checked Out' && 'bg-gray-300 text-grey-900 p-1'} ${status === 'Unconfirmed' && 'bg-blue-200 text-blue-800'} rounded-md font-semibold max-h-10 py-1 m-auto bookingstatus`,
           )}
         >
           {status}
@@ -61,16 +63,18 @@ const Bookingrow = ({ bookings = [], guestdata = [] }) => {
         <h1 className="content-center xs:text-[9px]">
           {Moneyformate(totalprice)}
         </h1>
-        <button onClick={handelTree} ref={btnref}>
-          <HiDotsHorizontal />
-        </button>
+        <div className="flex justify-center">
+          <button onClick={handelTree} ref={btnref}>
+            <HiDotsHorizontal />
+          </button>
+        </div>
       </div>
       {treebtn && (
         <div
           style={{
             position: 'fixed',
             right: `${position.x}px`,
-            top: `${position.y + 20}px`,
+            top: `${position.y}px`,
           }}
           className="absolute flex flex-col bg-slate-300 rounded-md border bottom-slate-200"
         >

@@ -74,3 +74,23 @@
 .bg {
   @apply bg-white rounded-md font-semibold text-slate-600;
 }
+
+.bookgrid {
+  @apply xl:grid-cols-[0.2fr_0.7fr_1fr_0.5fr_0.9fr_0.1fr] md:grid-cols-[0.2fr_1.2fr_1fr_0.9fr_1fr_0.2fr] xs:gap-2 md:gap-1 xs:grid-cols-[0.1fr_0.5fr_1fr_0.1fr_0.2fr_0.1fr];
+}
+
+.bookingheading {
+  @apply md:grid-cols-[0.2fr_1.2fr_1fr_0.9fr_1fr_0.2fr] xs:grid-cols-[0.1fr_0.5fr_0.5fr_0.1fr_0.5fr];
+}
+
+.bookingstatus {
+  @apply xs:text-xs;
+}
+
+.details {
+  @apply xs:flex-col md:flex-row;
+}
+
+.formms {
+  @apply bg-slate-200 rounded-md  xs:max-w-[400px] h-[600px];
+}

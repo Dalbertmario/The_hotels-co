@@ -4,8 +4,9 @@ import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { NavLink } from 'react-router-dom';
+import Loading from './Loading';
 ChartJS.register(ArcElement, Tooltip, Legend);
-const TodayDetails = ({ datas, piedata }) => {
+const TodayDetails = ({ datas, piedata, isLoading, piechartLoading }) => {
   const currentDate = new Date();
   const val = datas?.find((el) => el);
   const da = piedata?.map((el) => {
@@ -15,8 +16,6 @@ const TodayDetails = ({ datas, piedata }) => {
   });
   const labelingval = da?.map((el) => ` Cabin No ${el.data}`);
   const dataval = da?.map((el) => el.label);
-  console.log(labelingval);
-  console.log(datas);
 
   //PIE CHART
   const data = {
@@ -59,56 +58,68 @@ const TodayDetails = ({ datas, piedata }) => {
 
   return (
     <div className="today">
-      <div className="flex flex-col gap-2 bg-white rounded-md box shadow w-[50%] xs:w-[100%]">
+      <div className="flex flex-col gap-2 bg-white rounded-md box shadow transition-all w-[50%] xs:w-[100%]">
         <div className="border-b-2 p-2">
           <h1 className="font-bold xs:text-[17px] py-3">Today</h1>
         </div>
         <div>
-          <ul key={val?.guest_id} className="flex flex-col gap-2 p-7">
-            {datas?.map((el) => {
-              return new Date(el?.fromdate).getDate() ===
-                currentDate.getDate() ? (
-                <li className=" flex flex-row gap-2 content-center justify-between border-b-2 p-2">
-                  <h1 className="bg-green-200 text-green-600 font-medium rounded-lg text-[10px] font-semibold content-center px-1">
-                    ARRIVING
-                  </h1>
-                  <h1 className="font-medium ">{el.guest_fullname}</h1>
-                  <h1>{el.numnight} nights</h1>
-                  <NavLink
-                    to={`/bookings/${el.booking_id}`}
-                    state={{ guest_id: el.guest_id, status: 'Check in' }}
-                  >
-                    <button className="checkBtn">CHECK IN</button>
-                  </NavLink>
-                </li>
-              ) : (
-                <li className=" flex flex-row gap-2 justify-between border-b-2 p-1 ">
-                  <h1 className="bg-blue-200 text-blue-600 font-medium rounded-lg text-[10px] font-semibold content-center px-1">
-                    DEPARTING
-                  </h1>
-                  <h1 className="font-medium ">{el.guest_fullname}</h1>
-                  <h1>{el.numnight} nights</h1>
-                  <NavLink
-                    to={`/bookings/${el.booking_id}`}
-                    state={{ guest_id: el.guest_id, status: 'check out' }}
-                  >
-                    <button className="checkBtn p-1">CHECK OUT</button>
-                  </NavLink>
-                </li>
-              );
-            })}
-          </ul>
+          {isLoading ? (
+            <div className="mt-[150px]">
+              <Loading />
+            </div>
+          ) : (
+            <ul key={val?.guest_id} className="flex flex-col gap-2 p-7">
+              {datas?.map((el) => {
+                return new Date(el?.fromdate).getDate() ===
+                  currentDate.getDate() ? (
+                  <li className="flex flex-row gap-2 justify-between border-b-2 p-1">
+                    <h1 className="bg-green-200 text-green-600 font-medium rounded-lg text-[10px] font-semibold content-center px-1">
+                      ARRIVING
+                    </h1>
+                    <h1 className="font-medium ">{el.guest_fullname}</h1>
+                    <h1>{el.numnight} nights</h1>
+                    <NavLink
+                      to={`/bookings/${el.booking_id}`}
+                      state={{ guest_id: el.guest_id, status: 'Check in' }}
+                    >
+                      <button className="checkBtn p-3">CHECK IN</button>
+                    </NavLink>
+                  </li>
+                ) : (
+                  <li className=" flex flex-row gap-2 justify-between border-b-2 p-1 ">
+                    <h1 className="bg-blue-200 text-blue-600 font-medium rounded-lg text-[10px] font-semibold content-center px-1">
+                      DEPARTING
+                    </h1>
+                    <h1 className="font-medium ">{el.guest_fullname}</h1>
+                    <h1>{el.numnight} nights</h1>
+                    <NavLink
+                      to={`/bookings/${el.booking_id}`}
+                      state={{ guest_id: el.guest_id, status: 'check out' }}
+                    >
+                      <button className="checkBtn p-1">CHECK OUT</button>
+                    </NavLink>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
       </div>
-      <div className="bg-white rounded-md w-[50%] box shadow w-[50%] xs:w-[100%]">
+      <div className="bg-white rounded-md w-[50%] box shadow w-[50%] xs:w-[100%] transition-all">
         <div className="border-b-2 p-2">
           <h1 className="font-bold xs:text-[17px] py-3">
             Popularly booked cabin
           </h1>
         </div>
-        <div className="flex justify-center h-[450px] m-auto p-2">
-          <Pie data={data} options={options} width={400} height={400} />;
-        </div>
+        {piechartLoading ? (
+          <div className="mt-[150px]">
+            <Loading />
+          </div>
+        ) : (
+          <div className="flex justify-center h-[450px] m-auto p-2">
+            <Pie data={data} options={options} width={400} height={400} />;
+          </div>
+        )}
       </div>
     </div>
   );

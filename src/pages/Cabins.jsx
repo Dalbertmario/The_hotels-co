@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggelFromBtn, FormEditData, noDisocunt } from '../ui/uiStore';
 import CabinFormLayout from '../ui/CabinFormLayout';
 import CabinSorting from '../ui/CabinSorting';
+import Loading from '../ui/Loading';
 
 const Cabins = () => {
   const { cabindata = [], isLoadingcabin } = UseGetCabins();
@@ -27,19 +28,26 @@ const Cabins = () => {
   const cabinFil = cabindata.filter((val) => val.discount > 1);
   const cabinNoDis = cabindata.filter((val) => val.discount === 0);
   const cabinlenDis = cabinNoDis.length;
-  console.log(cabinlenDis);
+
   return (
-    <div className="flex flex-col gap-5  max-w-[1400px] m-auto ">
+    <div className="flex flex-col gap-5  max-w-[1400px] m-auto min-h-[90vh]">
       <CabinSorting />
       <div>
         <div className="bg-slate-300 p-3 rounded-t-lg">
           <CabinRowHead />
         </div>
         <div className="min-h-[50vh] outline outline-1 outline-slate-300">
-          {noDiscountbtn && cabinlenDis === 0 && (
-            <h1 className="text-center flex justify-center font-semibold pt-10 text-violet-500">
-              There is no cabin available
-            </h1>
+          {isLoadingcabin ? (
+            <div className="pt-14">
+              <Loading />
+            </div>
+          ) : (
+            noDiscountbtn &&
+            cabinlenDis === 0 && (
+              <h1 className="text-center flex justify-center font-semibold pt-10 text-violet-500">
+                There is no cabin available
+              </h1>
+            )
           )}
           {wDiscount &&
             cabinFil
@@ -48,7 +56,6 @@ const Cabins = () => {
                 if (selectingSort == 'low-price') return a.price - b.price;
               })
               .map((el) => <Cabinrow cabin={el} key={el.id} />)}
-
           {noDiscountbtn &&
             cabinNoDis
               .sort((a, b) => {
@@ -58,7 +65,6 @@ const Cabins = () => {
               .map((el) => (
                 <Cabinrow cabin={el} key={el.id} len={cabinlenDis} />
               ))}
-
           {allCabin &&
             cabindata
               .sort((a, b) => {

@@ -46,11 +46,11 @@ const BookingHeader = () => {
     <div className="flex flex-row justify-between gap-1 xs:gap-0 items-center ">
       <h1 className={clsx(`heading font-semibold`)}>All Bookings</h1>
       <div className="flex flex-row gap-2 items-center">
-        <div className="flex bg flex-row rounded-md">
+        <div className="flex bg flex-row rounded-md gap-1">
           <button
             onClick={handelAll}
             className={clsx(
-              `${isActive && 'cursor-not-allowed'} ${isActive === 'all' && 'sorting'} hover:bg-violet-600 text-sm p-1 hover:text-white hover:rounded-md transition-all`,
+              `${isActive === 'all' && 'cursor-not-allowed'} ${isActive === 'all' && 'sorting'} hover:bg-violet-600 text-sm p-1 hover:text-white hover:rounded-md transition-all`,
             )}
           >
             All
@@ -58,7 +58,7 @@ const BookingHeader = () => {
           <button
             onClick={handelCheckout}
             className={clsx(
-              `${'cursor-not-allowed'} ${isActive === 'check out' && 'sorting'} hover:bg-violet-600 text-sm p-1 hover:text-white hover:rounded-md transition-all`,
+              `${isActive === 'check out' && 'cursor-not-allowed'} ${isActive === 'check out' && 'sorting'} hover:bg-violet-600 text-sm p-1 hover:text-white hover:rounded-md transition-all`,
             )}
           >
             Checked Out
@@ -66,7 +66,7 @@ const BookingHeader = () => {
           <button
             onClick={handelCheckedIn}
             className={clsx(
-              `${'cursor-not-allowed'} ${isActive === 'check in' && 'sorting'} hover:bg-violet-600 text-sm p-1 hover:text-white hover:rounded-md transition-all`,
+              `${isActive === 'check in' && 'cursor-not-allowed'} ${isActive === 'check in' && 'sorting'} hover:bg-violet-600 text-sm p-1 hover:text-white hover:rounded-md transition-all`,
             )}
           >
             Checked In

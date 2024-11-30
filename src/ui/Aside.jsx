@@ -10,15 +10,18 @@ const Aside = () => {
   const ref = useRef();
   const { treeBtn } = useSelector((state) => state.uistore);
 
-  function handelClick() {
-    dispatch(toggelBtntree());
-  }
+  // function handelClick() {
+  //   dispatch(toggelBtntree());
+  // }
+  console.log(treeBtn);
   function handelAsideClick() {
-    dispatch(toggelBtntree());
+    if (treeBtn) {
+      dispatch(toggelBtntree());
+    }
   }
   return (
     <aside className="flex flex-col bg-white h-screen gap-10 w-[200px] p-5">
-      <button onClick={handelClick} className="xl:hidden 2xl:hidden">
+      <button onClick={handelAsideClick} className="xl:hidden 2xl:hidden">
         <FiAlignJustify />
       </button>
       <div>logo</div>

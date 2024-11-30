@@ -12,11 +12,11 @@ async function pastdate(val) {
 }
 
 function useDatefunction(val) {
-  const { data } = useQuery({
+  const { data, isLoading: pastdataloading } = useQuery({
     queryKey: ['dashdata', val],
     queryFn: () => pastdate(val),
     enabled: !!val,
   });
-  return { data };
+  return { data, pastdataloading };
 }
 export default useDatefunction;

@@ -12,11 +12,11 @@ async function DispGraph() {
 }
 
 function UseGraph() {
-  const { data: graphdata } = useQuery({
+  const { data: graphdata, isLoading: graphloading } = useQuery({
     queryKey: ['graph'],
     queryFn: DispGraph,
   });
-  return { graphdata };
+  return { graphdata, graphloading };
 }
 
 export default UseGraph;

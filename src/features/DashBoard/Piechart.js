@@ -14,12 +14,12 @@ async function piedata() {
 }
 
 function UsePieChart() {
-  const { data: piedatas } = useQuery({
+  const { data: piedatas, isLoading: piechartLoading } = useQuery({
     queryKey: ['piechart'],
     queryFn: piedata,
   });
 
-  return { piedatas };
+  return { piedatas, piechartLoading };
 }
 
 export default UsePieChart;
