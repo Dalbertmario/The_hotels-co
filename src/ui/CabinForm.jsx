@@ -16,6 +16,7 @@ const CabinForm = ({ edit }) => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({
     defaultValues: EditTrue ? edit : {},
   });
@@ -32,6 +33,9 @@ const CabinForm = ({ edit }) => {
   function handelCancel() {
     dispatch(toggelFromBtn());
   }
+  const price = watch('price');
+  console.log(price);
+  console.log(errors);
   return (
     <div className={clsx(`formms`)}>
       <form onSubmit={handleSubmit(handelform)}>
@@ -47,11 +51,18 @@ const CabinForm = ({ edit }) => {
           <p className="errmsg">{errors?.price?.message}</p>
           <div className="flex justify-between p-4">
             <label className="font-semibold text-md">Discount</label>
-            <input
-              className="outline-focus"
-              type="number"
-              {...register('discount')}
-            />
+            <div className="flex flex-col gap-2">
+              <input
+                className="outline-focus"
+                type="number"
+                {...register('discount', {
+                  validate: (value) =>
+                    value <= price &&
+                    'The discount should be less then the price value',
+                })}
+              />
+              <h1 className="errmsg text-xs">{errors?.discount?.message}</h1>
+            </div>
           </div>
 
           <div className="flex justify-between p-4">
@@ -75,7 +86,7 @@ const CabinForm = ({ edit }) => {
               )}
             />
           </div>
-          <p className="errmsg">{errors?.img?.message}</p>
+          <p className="errmsg text-xs">{errors?.img?.message}</p>
           <div className="flex gap-4 p-2">
             <button className="btn">
               {EditTrue ? 'Edit Cabin' : 'Create Cabin'}{' '}

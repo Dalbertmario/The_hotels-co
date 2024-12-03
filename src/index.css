@@ -7,7 +7,7 @@
 }
 
 .btn {
-  @apply py-3 p-2 bg-violet-500 hover:bg-violet-700 rounded-md font-semibold text-white;
+  @apply py-3 p-2 bg-violet-500 text-slate-500 transition-all hover:bg-violet-700 rounded-md font-semibold text-white;
 }
 
 .errmsg {
@@ -23,11 +23,11 @@
 }
 
 .Activetrue {
-  @apply text-violet-500 font-bold bg-slate-300 border-blue-300 p-2 font-semibold px-5 py-1 rounded-md text-center;
+  @apply text-violet-500 font-bold bg-slate-200  flex justify-center  p-2 font-semibold px-5 py-1 rounded-md text-center;
 }
 
 .Activefalse {
-  @apply font-semibold text-slate-500 hover:text-slate-700 hover:bg-slate-300 transition-all text-center rounded-md px-5 py-1;
+  @apply font-semibold  hover:text-violet-500 hover:bg-slate-200 transition-all text-center rounded-md px-5 py-1;
 }
 
 .sortingbooking {
@@ -92,5 +92,21 @@
 }
 
 .formms {
-  @apply bg-slate-200 rounded-md  xs:max-w-[400px] h-[600px];
+  @apply bg-slate-100 rounded-md md:w-[700px] text-slate-600 xl:w-[1000px] xs:w-[400px] h-[600px];
+}
+
+.aside {
+  @apply flex flex-col bg-white h-screen gap-10 w-[200px] p-5 md:p-6 xs:p-5 xl:p-4 delay-200 transition  ease-in-out duration-150;
+}
+
+.userform {
+  @apply flex xl:text-[15px] bg-white p-2 flex-col justify-center content-center md:m-[40px] h-[500px];
+}
+
+.innerform {
+  @apply md:m-[100px] xs:m-[10px] xl:m-[110px] xl:p-5;
+}
+
+.inneraccountForm {
+  @apply md:m-[30px] xl:m-[50px];
 }

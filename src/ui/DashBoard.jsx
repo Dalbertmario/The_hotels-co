@@ -11,10 +11,8 @@ function Dashboard({ datas, val, isLoading }) {
   const totalSalse = datas
     ?.map((el) => el.totalprice.slice('', -3))
     .reduce((a, b) => +a + +b, 0);
-  console.log(isLoading);
   const checkIns = datas?.filter((el) => el.status === 'Checked In');
   const OccupencyRate = (checkIns?.length / (8 * val)) * 1000;
-  console.log(isLoading);
   return (
     <div className="dash">
       <div className="flex gap-2">

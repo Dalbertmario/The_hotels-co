@@ -80,7 +80,7 @@ const TodayDetails = ({ datas, piedata, isLoading, piechartLoading }) => {
                     <h1>{el.numnight} nights</h1>
                     <NavLink
                       to={`/bookings/${el.booking_id}`}
-                      state={{ guest_id: el.guest_id, status: 'Check in' }}
+                      state={{ guest_id: el.guest_id, status: 'Check In' }}
                     >
                       <button className="checkBtn p-3">CHECK IN</button>
                     </NavLink>
@@ -88,13 +88,15 @@ const TodayDetails = ({ datas, piedata, isLoading, piechartLoading }) => {
                 ) : (
                   <li className=" flex flex-row gap-2 justify-between border-b-2 p-1 ">
                     <h1 className="bg-blue-200 text-blue-600 font-medium rounded-lg text-[10px] font-semibold content-center px-1">
-                      DEPARTING
+                      {el.status === 'Checked Out'
+                        ? 'Checked out'
+                        : 'DEPARTING'}
                     </h1>
                     <h1 className="font-medium ">{el.guest_fullname}</h1>
                     <h1>{el.numnight} nights</h1>
                     <NavLink
                       to={`/bookings/${el.booking_id}`}
-                      state={{ guest_id: el.guest_id, status: 'check out' }}
+                      state={{ guest_id: el.guest_id, status: 'Check Out' }}
                     >
                       <button className="checkBtn p-1">CHECK OUT</button>
                     </NavLink>

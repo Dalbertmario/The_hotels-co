@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 import Moneyformate from '../../helper/Moneyformate';
 import { HiDotsHorizontal } from 'react-icons/hi';
 import Loading from '../../ui/Loading';
+import { FaRegEye } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
 const Bookingrow = ({ bookings = [], guestdata = [], isLoading }) => {
   const [treebtn, settreeBtn] = useState(false);
   const [position, setPosition] = useState({});
@@ -63,8 +65,14 @@ const Bookingrow = ({ bookings = [], guestdata = [], isLoading }) => {
         <h1 className="content-center xs:text-[9px]">
           {Moneyformate(totalprice)}
         </h1>
-        <div className="flex justify-center">
-          <button onClick={handelTree} ref={btnref}>
+        <div className="flex justify-center items-center">
+          <button
+            className={clsx(
+              `${treebtn && 'outline outline-violet-300'} flex justify-center rounded-md p-1`,
+            )}
+            onClick={handelTree}
+            ref={btnref}
+          >
             <HiDotsHorizontal />
           </button>
         </div>
@@ -83,10 +91,18 @@ const Bookingrow = ({ bookings = [], guestdata = [], isLoading }) => {
               to={`/bookings/${booking_id}`}
               state={{ guest_id: bookTguest_id }}
             >
-              See details
+              <span className="flex items-center gap-1">
+                <FaRegEye size={20} />
+                <h1>See details</h1>
+              </span>
             </NavLink>
           </button>
-          <button className="hover:bg-slate-200 p-2">delete booking</button>
+          <button className="hover:bg-slate-200 p-2">
+            <span className="flex items-center gap-1">
+              <MdDelete size={20} />
+              <h1>delete booking</h1>
+            </span>
+          </button>
         </div>
       )}
     </div>

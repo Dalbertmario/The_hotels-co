@@ -5,14 +5,20 @@ import dotenv from 'dotenv';
 const { Client } = pg;
 import cors from 'cors';
 import morgan from 'morgan';
-import clientrouter from './server/router/cabins/index.js';
-import bookingRouter from './server/router/bookings/index.js';
-import GuestRouter from './server/router/Guest/index.js';
-import DashboardRouter from './server/router/dashboard/index.js';
+import clientrouter from './router/cabins/index.js';
+import bookingRouter from './router/bookings/index.js';
+import GuestRouter from './router/Guest/index.js';
+import DashboardRouter from './router/dashboard/index.js';
+import userRouter from './router/user/user.js';
+
 const app = express();
 app.use(cors());
 app.use(morgan('dev'));
 dotenv.config();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+const apikey = process.env.JWT_SECRET;
+//DB
 const client = new Client({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -21,6 +27,7 @@ const client = new Client({
   port: 5432,
   ssl: { rejectUnauthorized: false },
 });
+//S#
 const S3 = new S3Client({
   region: process.env.AWS_REGION,
   credentials: {
@@ -42,6 +49,8 @@ app.use('/hotel', clientrouter(client, S3));
 app.use('/hotel', bookingRouter(client));
 app.use('/hotel', GuestRouter(client));
 app.use('/hotel', DashboardRouter(client));
+app.use('/hotel', userRouter(client, apikey));
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);

@@ -5,7 +5,8 @@ import { IoMdArrowRoundBack } from 'react-icons/io';
 import datetimeformate from '../helper/dateformate';
 import Moneyformate from '../helper/Moneyformate';
 import Loading from '../ui/Loading';
-
+import UseCheckIn from '../features/DashBoard/Checkin';
+import UseDeleteBookings from '../features/DashBoard/DeleteBooking';
 const Details = () => {
   const { id } = useParams();
   const [bookingdata = [], setData] = useState();
@@ -15,7 +16,18 @@ const Details = () => {
   const back = useNavigate();
   const guestID = gg.state.guest_id;
   const bookstate = gg.state.status;
+  const { mutate: datamutate } = UseCheckIn();
+  const { mutate: DeleteBookings } = UseDeleteBookings();
   console.log(bookstate);
+  function checkIn(id, status) {
+    datamutate({
+      id: id,
+      status: status === 'Check Out' ? 'Checked Out' : 'Checked In',
+    });
+  }
+  function DeleteBooking(id) {
+    DeleteBookings(id);
+  }
   useEffect(() => {
     async function fetchData() {
       try {
@@ -31,6 +43,7 @@ const Details = () => {
     }
     fetchData();
   }, [id]);
+
   useEffect(() => {
     async function getDetailsGuest() {
       try {
@@ -63,7 +76,7 @@ const Details = () => {
   function handelBack() {
     back(-1);
   }
-
+  console.log(bookstate?.slice(-3) === status?.slice(-3));
   return (
     <div className="h-[89vh] flex flex-col max-w-[1400px] m-auto">
       {isLoading ? (
@@ -133,20 +146,47 @@ const Details = () => {
               >
                 {status === 'Unconfirmed' && 'WILL PAY AT PROPERTY'}
                 {status === 'Checked Out' && 'PAID'}
-                {status === 'Confimed' && 'PAID'}
+                {status === 'Confirmed' && 'PAID'}
                 {status === 'Checked In' && 'PAID'}
               </h1>
             </div>
           </div>
+          {bookstate && (
+            <div className="mt-2">
+              {guestdata.map((el) => (
+                <div className="flex gap-2 bg-white p-2 rounded-md">
+                  <input
+                    type="checkbox"
+                    defaultChecked={
+                      status === 'Confirmed' || 'Checked In' || 'Checked Out'
+                    }
+                    disabled={
+                      status === 'Confirmed' || 'Checked In' || 'Checked Out'
+                    }
+                  />
+                  <h1 className="text-sans text-slate-700 font-semibold py-4">{`I confirm that ${el.fullname} has paid the totalamount of ${Moneyformate(totalprice)}`}</h1>
+                </div>
+              ))}
+            </div>
+          )}
           <div className="flex flex-row gap-3 item-right p-3">
+            {bookstate && (
+              <button
+                disabled={bookstate?.slice(-3) === status?.slice(-3)}
+                onClick={() => checkIn(booking_id, bookstate)}
+                className="bg-green-500 p-2 font-semibold text-white rounded-md hover:bg-green-400"
+              >
+                {bookstate}
+              </button>
+            )}
+
             <button
+              onClick={() => DeleteBooking(booking_id)}
               className={clsx(
-                `${(bookstate && 'bg-blue-500 text-white p-2 hover:bg-blue-600 rounded-md transition-all font-medium px-5') || 'bg-red-500 p-2 font-medium text-white rounded-md hover:bg-red-600 transition-all px-5'}`,
+                `${(bookstate && 'bg-blue-500 text-white p-2 hover:bg-blue-600 rounded-md transition-all font-medium px-5') || 'bg-red-500 p-2 font-medium text-white rounded-md hover:bg-red-600 transition-all px-5 font-semibold'}`,
               )}
             >
-              {(bookstate === 'check in' && `Check In #${booking_id}`) ||
-                (bookstate === 'check out' && `check out  #${booking_id}`) ||
-                'Delete booking'}
+              Delete Booking
             </button>
             <button
               onClick={handelBack}
@@ -154,7 +194,7 @@ const Details = () => {
             >
               Back
             </button>
-          </div>{' '}
+          </div>
         </>
       )}
     </div>

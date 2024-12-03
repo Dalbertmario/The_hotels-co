@@ -5,6 +5,9 @@ import UseDeleteCabin from './UseDeleteCabin';
 import { useDispatch } from 'react-redux';
 import { EditBtn, FormEditData, toggelFromBtn } from '../../ui/uiStore';
 import Moneyformate from '../../helper/Moneyformate';
+import { MdOutlineContentCopy } from 'react-icons/md';
+import { MdDeleteOutline } from 'react-icons/md';
+import { CiEdit } from 'react-icons/ci';
 
 const Cabinrow = ({ cabin, len }) => {
   const { mutate: Copycabin } = UseCopyCabin();
@@ -122,19 +125,27 @@ const Cabinrow = ({ cabin, len }) => {
             className="hover:bg-slate-400 p-2 rounded-md font-medium"
             onClick={handelCopy}
           >
-            Copy
+            <span className="flex items-center gap-1">
+              <MdOutlineContentCopy size={20} />
+
+              <h1>Copy</h1>
+            </span>
           </button>
           <button
             className="hover:bg-slate-400 p-2 font-medium"
             onClick={handelDelete}
           >
-            Delete
+            <span className="flex items-center gap-1">
+              <MdDeleteOutline size={20} /> <h1>Delete</h1>{' '}
+            </span>
           </button>
           <button
             className="hover:bg-slate-400 p-2 rounded-md font-medium"
             onClick={handelEdit}
           >
-            Edit
+            <span className="flex items-center gap-1">
+              <CiEdit size={20} /> <h1> Edit</h1>
+            </span>
           </button>
         </div>
       )}

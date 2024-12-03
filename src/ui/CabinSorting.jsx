@@ -32,19 +32,25 @@ const CabinSorting = () => {
       <div className="flex flex-row gap-2 items-center">
         <div className="flex bg-slate-300  flex-row rounded-md gap-2 xs:text-xs">
           <button
-            className={clsx(`${allCabin && 'cursor-not-allowed'} sorting`)}
+            className={clsx(
+              `${allCabin && 'cursor-not-allowed sorting'} font-semibold p-1`,
+            )}
             onClick={handelAllcabin}
           >
             All
           </button>
           <button
-            className={clsx(`${wDiscount && 'cursor-not-allowed'} sorting`)}
+            className={clsx(
+              `${wDiscount && 'cursor-not-allowed sorting'} font-semibold p-1`,
+            )}
             onClick={handelWithDiscount}
           >
             With Discount
           </button>
           <button
-            className={clsx(`${noDiscountbtn && 'cursor-not-allowed'} sorting`)}
+            className={clsx(
+              `${noDiscountbtn && 'cursor-not-allowed  sorting'} font-semibold p-1`,
+            )}
             onClick={handelNoDiscount}
           >
             No Discount

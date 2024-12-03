@@ -4,15 +4,18 @@ import Aside from './Aside';
 import Header from './Header';
 import { useSelector } from 'react-redux';
 import clsx from 'clsx';
+import LoginCred from '../pages/LoginCred';
 
 const Applayout = () => {
   const { treeBtn, formBtn } = useSelector((state) => state.uistore);
-  console.log(treeBtn);
+  const token = localStorage.getItem('token');
+
+  if (!token) return <LoginCred />;
   return (
     <div className={clsx(`flex flex-row ${formBtn && 'blur fixed'} `)}>
       <div
         className={clsx(
-          `${(treeBtn && 'xs:block z-10 ') || 'xs:hidden'} xl:block h-screen`,
+          `${(treeBtn && 'xs:block z-10') || 'xs:hidden'} transition-all xl:block h-screen`,
         )}
       >
         <Aside />

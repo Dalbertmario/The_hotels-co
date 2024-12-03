@@ -126,6 +126,7 @@ GROUP BY EXTRACT(YEAR FROM fromdate), EXTRACT(MONTH FROM fromdate)`,
         );
     }
   });
+
   return router;
 }
 
