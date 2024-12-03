@@ -17,22 +17,22 @@ app.use(morgan('dev'));
 dotenv.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const apikey = process.env.JWT_SECRET;
+const apikey = process.env.JWTSECRET;
 //DB
 const client = new Client({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
+  host: process.env.DBHOST,
+  user: process.env.DBUSER,
+  password: process.env.DBPASSWORD,
+  database: process.env.DBDATABASE,
   port: 5432,
   ssl: { rejectUnauthorized: false },
 });
-//S#
+//S3#
 const S3 = new S3Client({
-  region: process.env.AWS_REGION,
+  region: process.env.AWSREGION,
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
+    accessKeyId: process.env.AWSACCESSKEY,
+    secretAccessKey: process.env.AWSSECRETKEY,
   },
 });
 client
