@@ -5,11 +5,11 @@ import dotenv from 'dotenv';
 const { Client } = pg;
 import cors from 'cors';
 import morgan from 'morgan';
-import clientrouter from './router/cabins/index.js';
-import bookingRouter from './router/bookings/index.js';
-import GuestRouter from './router/Guest/index.js';
-import DashboardRouter from './router/dashboard/index.js';
-import userRouter from './router/user/user.js';
+import cabinrouter from './routes/cabins/index.js';
+import bookingRouter from './routes/bookings/index.js';
+import GuestRouter from './routes/Guest/index.js';
+import DashboardRouter from './routes/dashboard/index.js';
+import userRouter from './routes/user/user.js';
 
 const app = express();
 app.use(cors());
@@ -45,11 +45,11 @@ client
     process.exit(1); // Exit the application if the database connection fails
   });
 
-app.use('/hotel', clientrouter(client, S3));
+app.use('/hotel', cabinrouter(client, S3));
 app.use('/hotel', bookingRouter(client));
 app.use('/hotel', GuestRouter(client));
 app.use('/hotel', DashboardRouter(client));
-app.use('/hotel', userRouter(client, apikey));
+app.use('/hotel', userRouter(client, apikey, S3));
 
 const PORT = 3000;
 app.listen(PORT, () => {
