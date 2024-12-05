@@ -39,7 +39,7 @@ const LoginCred = () => {
               {...register('password')}
               type="password"
               className="outline-focus"
-              defaultValue={123456789}
+              defaultValue={1234567890}
             />
           </div>
           <div className="flex justify-center">

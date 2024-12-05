@@ -32,7 +32,7 @@ function UseCheckIn() {
     mutationFn: (val) => checkIn(val),
     onSuccess: () => {
       query.invalidateQueries(['bookings']);
-      query.invalidateQueries(['guest']);
+      query.invalidateQueries(['guests']);
     },
     onError: (err) => {
       console.log(err);

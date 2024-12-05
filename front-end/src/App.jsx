@@ -10,6 +10,7 @@ import Details from './pages/Details';
 import Users from './pages/Users';
 import AccountDetails from './pages/AccountDetails';
 import LoginCred from './pages/LoginCred';
+import Newbookings from './ui/Newbookings';
 
 const App = () => {
   const query = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => {
         { path: '/bookings/:id', element: <Details /> },
         { path: '/users', element: <Users /> },
         { path: '/account', element: <AccountDetails /> },
+        { path: '/newbook', element: <Newbookings /> },
       ],
     },
   ]);

@@ -30,7 +30,9 @@ const Header = () => {
             src={data?.user?.profile}
           />
         </div>
-
+        {/* <NavLink to="/newbook">
+          <button className="font-semibold animate-pulse">New Booking</button>
+        </NavLink> */}
         <NavLink to="/account">
           <button className="hover:bg-slate-200 transition-all p-2 rounded-md">
             <CgProfile size={25} />

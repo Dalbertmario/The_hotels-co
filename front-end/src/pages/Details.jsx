@@ -2,11 +2,11 @@ import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io';
-import datetimeformate from '../helper/dateformate';
 import Moneyformate from '../helper/Moneyformate';
 import Loading from '../ui/Loading';
 import UseCheckIn from '../features/DashBoard/Checkin';
 import UseDeleteBookings from '../features/DashBoard/DeleteBooking';
+import toast from 'react-hot-toast';
 const Details = () => {
   const { id } = useParams();
   const [bookingdata = [], setData] = useState();
@@ -20,11 +20,16 @@ const Details = () => {
   const { mutate: DeleteBookings } = UseDeleteBookings();
   console.log(bookstate);
   function checkIn(id, status) {
-    datamutate({
-      id: id,
-      status: status === 'Check Out' ? 'Checked Out' : 'Checked In',
-    });
+    if (bookstate?.slice(-3) === status?.slice(-3)) {
+      toast.error(`${status} already`);
+    } else {
+      datamutate({
+        id: id,
+        status: status === 'Check Out' ? 'Checked Out' : 'Checked In',
+      });
+    }
   }
+
   function DeleteBooking(id) {
     DeleteBookings(id);
   }
@@ -76,7 +81,7 @@ const Details = () => {
   function handelBack() {
     back(-1);
   }
-  console.log(bookstate?.slice(-3) === status?.slice(-3));
+
   return (
     <div className="h-[89vh] flex flex-col max-w-[1400px] m-auto">
       {isLoading ? (
@@ -172,7 +177,7 @@ const Details = () => {
           <div className="flex flex-row gap-3 item-right p-3">
             {bookstate && (
               <button
-                disabled={bookstate?.slice(-3) === status?.slice(-3)}
+                // disabled={bookstate?.slice(-3) === status?.slice(-3)}
                 onClick={() => checkIn(booking_id, bookstate)}
                 className="bg-green-500 p-2 font-semibold text-white rounded-md hover:bg-green-400"
               >

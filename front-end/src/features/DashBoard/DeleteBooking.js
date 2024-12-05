@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
-import { redirect } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { redirect, useNavigate } from 'react-router-dom';
 
 async function Deletebookings(params) {
   console.log(params);
@@ -16,10 +17,12 @@ async function Deletebookings(params) {
 }
 
 function UseDeleteBookings() {
+  const navigate = useNavigate();
   const { mutate } = useMutation({
     mutationFn: (val) => Deletebookings(val),
     onSuccess: () => {
-      redirect('/');
+      toast.success('Details deleted successfully');
+      navigate('/');
     },
     onError: (err) => {
       console.log(err);

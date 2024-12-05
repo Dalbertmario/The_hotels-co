@@ -4,9 +4,13 @@ import { redirect } from 'react-router-dom';
 
 async function Editusers(data) {
   const formdata = new FormData();
-
+  console.log(data);
   if (data.img && data.img[0]) {
+    console.log(data.img[0]);
     formdata.append('img', data.img[0]);
+  } else {
+    console.log(data.img);
+    formdata.append('img', data.img);
   }
   formdata.append('fullname', data.fullname);
 

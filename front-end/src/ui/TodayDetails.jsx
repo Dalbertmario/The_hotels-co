@@ -55,7 +55,7 @@ const TodayDetails = ({ datas, piedata, isLoading, piechartLoading }) => {
       },
     },
   };
-
+  console.log(val);
   return (
     <div className="today">
       <div className="flex flex-col gap-2 bg-white rounded-md box shadow transition-all w-[50%] xs:w-[100%]">

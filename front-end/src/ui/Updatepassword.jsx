@@ -1,16 +1,18 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import UseRePassword from '../features/User/UpdatenewPass';
 
-const Updatepassword = () => {
+const Updatepassword = ({ fullname }) => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+  const { updatePassword } = UseRePassword();
   const password = watch('password');
   function passs(data) {
-    console.log(data);
+    updatePassword({ password: data.password, fullname: fullname });
   }
   return (
     <form
@@ -24,7 +26,7 @@ const Updatepassword = () => {
             {...register('password', {
               required: 'password required',
               validate: (val) =>
-                val.length < 7 || 'The password len should be greater then 8',
+                val.length > 7 || 'The password len should be greater then 8',
             })}
             type="text"
             className="outline outline-2 outline-slate-300 focus:outline-violet-500 p-1 rounded-md"

@@ -6,22 +6,31 @@ import UseRePassword from '../features/User/UpdatenewPass';
 import Updatepassword from '../ui/Updatepassword';
 
 const AccountDetails = () => {
-  const { data } = UseAccountDetails();
+  const { data = [] } = UseAccountDetails();
   const { datamutate, isLoading } = useEdituser();
-  const { register, reset, handleSubmit } = useForm({
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm({
     defaultValues: {
-      email: data?.user?.email,
-      fullname: data?.user?.user,
-      img: data?.user?.profile,
+      email: data.user.email,
+      fullname: data.user.user,
+      img: '',
     },
   });
-
-  function first(data) {
+  const photo = watch('img');
+  function first(datas, e) {
     const filteredData = Object.fromEntries(
-      Object.entries(data).filter(([_, value]) => value),
+      Object.entries(datas).filter(([_, value]) => value),
     );
+
     datamutate(filteredData);
   }
+  console.log(photo.length);
+  console.log(errors);
   return (
     <div className="h-[89vh] flex gap-4 flex-col">
       <h1 className="text-[16px] text-slate-700 font-bold">
@@ -48,18 +57,33 @@ const AccountDetails = () => {
             <input
               {...register('fullname')}
               disabled={true}
-              defaultValue={data?.user?.user}
-              type="email"
+              // defaultValue={data?.user?.user}
+              type="text"
               className="outline outline-2 outline-slate-300 focus:outline-violet-500 p-1 rounded-md "
             />
           </div>
           <div className="flex justify-between">
             <label>Avatar image</label>
-            <input {...register('img')} type="file" />
+            <div>
+              <input
+                {...register('img', {
+                  register: 'required photo',
+                  validate: (val) =>
+                    (val.length === 0 && 'Should contain a file') || val,
+                })}
+                type="file"
+              />
+              <h1 className="text-red-500 text-semibold">
+                {errors?.img?.message}
+              </h1>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <button className="btn">Update account</button>
           </div>
         </form>
       </div>
-      <Updatepassword />
+      <Updatepassword fullname={data.user.user} />
     </div>
   );
 };

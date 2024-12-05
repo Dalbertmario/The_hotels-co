@@ -3,7 +3,7 @@ import multer from "multer";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
-import pass from "../../../front-end/src/features/User/login";
+// import pass from "../../../front-end/src/features/User/login";
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
@@ -66,6 +66,7 @@ function userRouter(client, key, S3) {
       res.status(500).send("Error logging in");
     }
   });
+
   //fileupload
   router.put("/fileupload", upload.single("img"), async (req, res) => {
     const { fullname } = req.body;
@@ -99,7 +100,7 @@ function userRouter(client, key, S3) {
       res.status(500).send("Error connecting uploading photo");
     }
   });
-
+  //authentication
   function authenticateToken(req, res, next) {
     const token = req.headers["authorization"];
     if (!token) {
@@ -111,17 +112,23 @@ function userRouter(client, key, S3) {
         console.error("Token verification :", err.message);
         return res.sendStatus(403);
       }
-      req.user = user; // Attach user information to request
+      req.user = user;
       next();
     });
   }
 
-  // Protected route example
+  // Protected route
   router.get("/protected", authenticateToken, (req, res) => {
     return res.json({ user: req.user });
   });
-  router.get("/newPassword", async (req, res) => {
+
+  //NewPassword
+  router.put("/newPassword", upload.none(), async (req, res) => {
     const { password, fullname } = req.body;
+    console.log(password, fullname);
+    if (!password || !fullname) {
+      return res.status(400).send({ message: "Missing password or fullname" });
+    }
     try {
       const hashingPassword = await bcrypt.hash(password, 10);
       const result = await client.query(
