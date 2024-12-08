@@ -26,7 +26,7 @@ async function editCabin(params) {
   }
 
   try {
-    const res = await fetch(`http://localhost:3000/hotel/cabins/${id}`, {
+    const res = await fetch(`http://3.84.86.239/hotel/cabins/${id}`, {
       method: 'PUT',
       body: formData,
     });

@@ -5,12 +5,9 @@ import { redirect, useNavigate } from 'react-router-dom';
 async function Deletebookings(params) {
   console.log(params);
   try {
-    const result = await fetch(
-      `http://localhost:3000/hotel/bookings/${params}`,
-      {
-        method: 'DELETE',
-      },
-    );
+    const result = await fetch(`http://3.84.86.239/hotel/bookings/${params}`, {
+      method: 'DELETE',
+    });
   } catch (err) {
     console.log(err);
   }

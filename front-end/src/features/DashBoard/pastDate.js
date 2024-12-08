@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 
 async function pastdate(val) {
   try {
-    const result = await fetch(`http://localhost:3000/hotel/dashboard/${val}`);
+    const result = await fetch(`http://3.84.86.239/hotel/dashboard/${val}`);
     if (!result.ok) throw new Error(`Could not fetch the dates`);
     const dat = await result.json();
     return dat;

@@ -28,7 +28,7 @@ function Dashboard({ datas, val, isLoading }) {
                   <Loading size={10} />
                 </h1>
               ) : (
-                <h1 className="dashdetails"> {datalenght}</h1>
+                <h1 className="dashdetails">{datalenght}</h1>
               )}
             </div>
           </span>

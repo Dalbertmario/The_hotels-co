@@ -7,7 +7,7 @@ import { toggelFromBtn } from '../../ui/uiStore';
 async function DeleteCabin(params) {
   console.log(params);
   try {
-    const result = await fetch(`http://localhost:3000/hotel/cabins/${params}`, {
+    const result = await fetch(`http://3.84.86.239/hotel/cabins/${params}`, {
       method: 'DELETE',
     });
     if (!result.ok) throw new Error('Could not Delete Cabin');

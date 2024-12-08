@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 async function bookings() {
   try {
-    const result = await fetch('http://localhost:3000/hotel/guests');
+    const result = await fetch('http://3.84.86.239/hotel/guests');
     if (!result.ok) throw new Error('There is an error in fetching cabin');
     const data = result.json();
     return data;

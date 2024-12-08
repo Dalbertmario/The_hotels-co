@@ -7,7 +7,7 @@ async function register(data) {
   formData.append('fullname', data.fullname);
   formData.append('password', data.password);
   console.log(data);
-  const response = await fetch('http://localhost:3000/hotel/register', {
+  const response = await fetch('http://3.84.86.239/hotel/register', {
     method: 'POST',
     body: formData,
   });

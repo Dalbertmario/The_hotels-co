@@ -13,7 +13,7 @@ async function uploadCabin(params) {
 
   console.log(params.img);
   try {
-    const send = await fetch(`http://localhost:3000/hotel/cabins`, {
+    const send = await fetch(`http://3.84.86.239/hotel/cabins`, {
       method: 'POST',
       body: formData,
     });

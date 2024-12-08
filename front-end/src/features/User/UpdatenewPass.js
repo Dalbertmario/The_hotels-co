@@ -7,7 +7,7 @@ async function newPasswordSetting(val) {
   formdata.append('password', val.password);
   console.log(val);
 
-  const res = await fetch('http://localhost:3000/hotel/newPassword', {
+  const res = await fetch('http://3.84.86.239/hotel/newPassword', {
     method: 'PUT',
     body: formdata,
   });

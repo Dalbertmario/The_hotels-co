@@ -16,7 +16,7 @@ const TodayDetails = ({ datas, piedata, isLoading, piechartLoading }) => {
   });
   const labelingval = da?.map((el) => ` Cabin No ${el.data}`);
   const dataval = da?.map((el) => el.label);
-
+  console.log(val);
   //PIE CHART
   const data = {
     labels: labelingval,

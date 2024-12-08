@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 async function DispGraph() {
   try {
-    const result = await fetch('http://localhost:3000/hotel/graph/dashboard');
+    const result = await fetch('http://3.84.86.239/hotel/graph/dashboard');
     if (!result.ok) throw new Error('The value could not be found');
     const data = await result.json();
     return data;

@@ -6,7 +6,7 @@ async function login(params) {
   fromdata.append('password', params.password);
   fromdata.append('fullname', params.fullname);
   try {
-    const res = await fetch('http://localhost:3000/hotel/login', {
+    const res = await fetch('http://3.84.86.239/hotel/login', {
       method: 'POST',
       body: fromdata,
     });

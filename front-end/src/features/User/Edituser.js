@@ -15,7 +15,7 @@ async function Editusers(data) {
   formdata.append('fullname', data.fullname);
 
   try {
-    const result = await fetch('http://localhost:3000/hotel/fileupload', {
+    const result = await fetch('http://3.84.86.239/fileupload', {
       method: 'PUT',
       body: formdata,
     });

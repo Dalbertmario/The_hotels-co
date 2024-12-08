@@ -3,7 +3,7 @@ async function checkIn(params) {
   console.log(params);
   try {
     const response = await fetch(
-      `http://localhost:3000/hotel/bookings/${params.id}`,
+      `http://3.84.86.239/hotel/bookings/${params.id}`,
       {
         method: 'PUT',
         headers: {
@@ -32,7 +32,8 @@ function UseCheckIn() {
     mutationFn: (val) => checkIn(val),
     onSuccess: () => {
       query.invalidateQueries(['bookings']);
-      query.invalidateQueries(['guests']);
+      // query.invalidateQueries(['guests']);
+      // window.location.reload();
     },
     onError: (err) => {
       console.log(err);

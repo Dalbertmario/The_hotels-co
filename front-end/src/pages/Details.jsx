@@ -18,27 +18,28 @@ const Details = () => {
   const bookstate = gg.state.status;
   const { mutate: datamutate } = UseCheckIn();
   const { mutate: DeleteBookings } = UseDeleteBookings();
-  console.log(bookstate);
   function checkIn(id, status) {
-    if (bookstate?.slice(-3) === status?.slice(-3)) {
-      toast.error(`${status} already`);
+    if (
+      bookingdata.status ===
+      `${status?.split(' ')[0]}ed ${status?.split(' ')[1]}`
+    ) {
+      toast.error(`Already ${status.split(' ')[0]}ed ${status.split(' ')[1]}`);
     } else {
       datamutate({
         id: id,
         status: status === 'Check Out' ? 'Checked Out' : 'Checked In',
       });
+      toast.success(`${status} successfull`);
     }
   }
-
+  // console.log(bookstate, bookingdata);
   function DeleteBooking(id) {
     DeleteBookings(id);
   }
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(
-          `http://localhost:3000/hotel/bookings/${id}`,
-        );
+        const response = await fetch(`http://3.84.86.239/hotel/bookings/${id}`);
         if (!response.ok) throw new Error(`${response.status}`);
         const result = await response.json();
         setData(result);
@@ -54,7 +55,7 @@ const Details = () => {
       try {
         setLoading(true);
         const result = await fetch(
-          `http://localhost:3000/hotel/guests/${guestID}`,
+          `http://3.84.86.239/hotel/guests/${guestID}`,
         );
         if (!result.ok) throw new Error('Guest id not found in the table');
         const res = await result.json();
