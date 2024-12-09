@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { toggelFromBtn } from '../../ui/uiStore';
 
+const api = import.meta.env.VITE_API_URL;
 async function editCabin(params) {
   const formData = new FormData();
   const id = params.Editid;
@@ -26,7 +27,7 @@ async function editCabin(params) {
   }
 
   try {
-    const res = await fetch(`http://3.84.86.239/hotel/cabins/${id}`, {
+    const res = await fetch(`${api}/hotel/cabins/${id}`, {
       method: 'PUT',
       body: formData,
     });

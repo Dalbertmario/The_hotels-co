@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
+const api = import.meta.env.VITE_API_URL;
 async function DispGraph() {
   try {
-    const result = await fetch('http://3.84.86.239/hotel/graph/dashboard');
+    const result = await fetch(`${api}/hotel/graph/dashboard`);
     if (!result.ok) throw new Error('The value could not be found');
     const data = await result.json();
     return data;

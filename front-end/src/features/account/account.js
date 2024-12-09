@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 
+const api = import.meta.env.VITE_API_URL;
 async function fetchingAccountDetails() {
   const token = localStorage.getItem('token');
 
   try {
-    const result = await fetch('http://3.84.86.239/hotel/protected', {
+    const result = await fetch(`${api}/hotel/protected`, {
       method: 'GET',
       headers: {
         Authorization: `${token}`,

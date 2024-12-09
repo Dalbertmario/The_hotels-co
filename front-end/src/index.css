@@ -112,5 +112,5 @@
 }
 
 .login {
-  @apply transition-all md:w-[450px] md:h-[400px] xs:w-[450px] xl:w-[700px];
+  @apply transition-all md:w-[450px] md:h-[400px] xs:w-[500px] xl:w-[700px] p-8;
 }

@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
+const api = import.meta.env.VITE_API_URL;
 async function getBooking(params) {
   try {
-    const result = await fetch('http://3.84.86.239/hotel/bookings');
+    const result = await fetch(`${api}/hotel/bookings`);
     if (!result.ok) throw new Error('Cloud not fetch bookings');
     const data = await result.json();
     return data;

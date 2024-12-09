@@ -14,7 +14,6 @@ const Aside = () => {
   const dispatch = useDispatch();
   const ref = useRef();
   const { treeBtn } = useSelector((state) => state.uistore);
-  console.log(treeBtn);
   function handelAsideClick() {
     if (treeBtn) {
       dispatch(toggelBtntree());

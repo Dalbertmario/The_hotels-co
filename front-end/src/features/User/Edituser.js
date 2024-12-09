@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { redirect } from 'react-router-dom';
-
+const api = import.meta.env.VITE_API_URL;
 async function Editusers(data) {
   const formdata = new FormData();
   console.log(data);
@@ -15,7 +15,7 @@ async function Editusers(data) {
   formdata.append('fullname', data.fullname);
 
   try {
-    const result = await fetch('http://3.84.86.239/fileupload', {
+    const result = await fetch(`${api}/fileupload`, {
       method: 'PUT',
       body: formdata,
     });

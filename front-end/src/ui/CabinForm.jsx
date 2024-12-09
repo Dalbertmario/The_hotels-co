@@ -57,7 +57,7 @@ const CabinForm = ({ edit }) => {
                 type="number"
                 {...register('discount', {
                   validate: (value) =>
-                    value <= price &&
+                    value < price ||
                     'The discount should be less then the price value',
                 })}
               />

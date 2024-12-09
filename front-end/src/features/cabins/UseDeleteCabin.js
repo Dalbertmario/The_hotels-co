@@ -4,10 +4,11 @@ import { useDispatch } from 'react-redux';
 import { useMatch } from 'react-router-dom';
 import { toggelFromBtn } from '../../ui/uiStore';
 
+const api = import.meta.env.VITE_API_URL;
 async function DeleteCabin(params) {
   console.log(params);
   try {
-    const result = await fetch(`http://3.84.86.239/hotel/cabins/${params}`, {
+    const result = await fetch(`${api}/hotel/cabins/${params}`, {
       method: 'DELETE',
     });
     if (!result.ok) throw new Error('Could not Delete Cabin');

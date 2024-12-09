@@ -24,7 +24,6 @@ const Bookings = () => {
   const bookCheckedOut = bookingdata.filter(
     (el) => el.status === 'Checked Out',
   );
-  console.log(isLoading);
   return (
     <div className="flex flex-col gap-4 max-w-[1400px] m-auto min-h-[89vh]">
       <BookingSorting />

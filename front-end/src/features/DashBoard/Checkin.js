@@ -1,17 +1,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+const api = import.meta.env.VITE_API_URL;
 async function checkIn(params) {
   console.log(params);
   try {
-    const response = await fetch(
-      `http://3.84.86.239/hotel/bookings/${params.id}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(params),
+    const response = await fetch(`${api}/bookings/${params.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
+      body: JSON.stringify(params),
+    });
 
     // Check if the response is OK (status code 200-299)
     if (!response.ok) {

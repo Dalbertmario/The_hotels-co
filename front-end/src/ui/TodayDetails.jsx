@@ -16,7 +16,7 @@ const TodayDetails = ({ datas, piedata, isLoading, piechartLoading }) => {
   });
   const labelingval = da?.map((el) => ` Cabin No ${el.data}`);
   const dataval = da?.map((el) => el.label);
-  console.log(val);
+
   //PIE CHART
   const data = {
     labels: labelingval,
@@ -55,7 +55,7 @@ const TodayDetails = ({ datas, piedata, isLoading, piechartLoading }) => {
       },
     },
   };
-  console.log(val);
+
   return (
     <div className="today">
       <div className="flex flex-col gap-2 bg-white rounded-md box shadow transition-all w-[50%] xs:w-[100%]">

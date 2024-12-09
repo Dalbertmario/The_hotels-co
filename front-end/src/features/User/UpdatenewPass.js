@@ -1,13 +1,14 @@
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
+const api = import.meta.env.VITE_API_URL;
 async function newPasswordSetting(val) {
   const formdata = new FormData();
   formdata.append('fullname', val.fullname);
   formdata.append('password', val.password);
   console.log(val);
 
-  const res = await fetch('http://3.84.86.239/hotel/newPassword', {
+  const res = await fetch(`${api}/hotel/newPassword`, {
     method: 'PUT',
     body: formdata,
   });

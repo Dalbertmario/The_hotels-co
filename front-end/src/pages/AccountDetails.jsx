@@ -29,8 +29,6 @@ const AccountDetails = () => {
 
     datamutate(filteredData);
   }
-  console.log(photo.length);
-  console.log(errors);
   return (
     <div className="h-[89vh] flex gap-4 flex-col">
       <h1 className="text-[16px] text-slate-700 font-bold">

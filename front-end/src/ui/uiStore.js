@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  treebtnbook: false,
   treeBtn: false,
   formBtn: false,
   editCabin: {},
@@ -30,6 +31,9 @@ const Uireducer = createSlice({
       state.guestAll = false;
       state.checkIn = false;
       state.unconfirmed = false;
+    },
+    toggelbookingtree: (state) => {
+      state.treebtnbook = !state.treebtnbook;
     },
     toggleguestCheckIn: (state) => {
       state.checkIn = !state.checkIn;
@@ -89,5 +93,6 @@ export const {
   toggelguestCheckedOut,
   toggleguestCheckIn,
   toggleguestUnconfirmed,
+  toggelbookingtree,
 } = Uireducer.actions;
 export default Uireducer.reducer;

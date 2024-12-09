@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-
+const api = import.meta.env.VITE_API_URL;
 async function copyCabin(params) {
   const formdata = new FormData();
   formdata.append('img', params.img);
@@ -9,7 +9,7 @@ async function copyCabin(params) {
   formdata.append('description', params.description);
   console.log(params);
   try {
-    const result = await fetch(`http://3.84.86.239/hotel/cabins`, {
+    const result = await fetch(`${api}/hotel/cabins`, {
       method: 'POST',
       body: formdata,
     });

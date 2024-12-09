@@ -8,6 +8,7 @@ import UseCheckIn from '../features/DashBoard/Checkin';
 import UseDeleteBookings from '../features/DashBoard/DeleteBooking';
 import toast from 'react-hot-toast';
 const Details = () => {
+  const api = import.meta.env.VITE_API_URL;
   const { id } = useParams();
   const [bookingdata = [], setData] = useState();
   const [isLoading, setLoading] = useState(false);
@@ -39,7 +40,7 @@ const Details = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`http://3.84.86.239/hotel/bookings/${id}`);
+        const response = await fetch(`${api}/hotel/bookings/${id}`);
         if (!response.ok) throw new Error(`${response.status}`);
         const result = await response.json();
         setData(result);
@@ -54,9 +55,7 @@ const Details = () => {
     async function getDetailsGuest() {
       try {
         setLoading(true);
-        const result = await fetch(
-          `http://3.84.86.239/hotel/guests/${guestID}`,
-        );
+        const result = await fetch(`${api}/hotel/guests/${guestID}`);
         if (!result.ok) throw new Error('Guest id not found in the table');
         const res = await result.json();
         setGuest(res);

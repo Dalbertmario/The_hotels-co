@@ -4,6 +4,7 @@ import { GiConsoleController } from 'react-icons/gi';
 import { useDispatch } from 'react-redux';
 import { toggelFromBtn } from '../../ui/uiStore';
 
+const api = import.meta.env.VITE_API_URL;
 async function uploadCabin(params) {
   const formData = new FormData();
   formData.append('img', params.img[0]);
@@ -13,7 +14,7 @@ async function uploadCabin(params) {
 
   console.log(params.img);
   try {
-    const send = await fetch(`http://3.84.86.239/hotel/cabins`, {
+    const send = await fetch(`${api}/hotel/cabins`, {
       method: 'POST',
       body: formData,
     });

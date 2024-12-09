@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
+const api = import.meta.env.VITE_API_URL;
 async function bookings() {
   try {
-    const result = await fetch('http://3.84.86.239/hotel/guests');
+    const result = await fetch(`${api}/hotel/guests`);
     if (!result.ok) throw new Error('There is an error in fetching cabin');
     const data = result.json();
     return data;

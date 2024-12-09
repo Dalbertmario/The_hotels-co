@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
+const api = import.meta.env.VITE_API_URL;
 async function getCabin() {
   try {
-    const result = await fetch('http://3.84.86.239/hotel/cabins');
+    const result = await fetch(`${api}/hotel/cabins`);
     if (!result.ok) throw new Error("Couldn't able to fetch cabin");
     const data = await result.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);

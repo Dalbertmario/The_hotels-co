@@ -1,11 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { redirect, useNavigate } from 'react-router-dom';
-
+const api = import.meta.env.VITE_API_URL;
 async function Deletebookings(params) {
   console.log(params);
   try {
-    const result = await fetch(`http://3.84.86.239/hotel/bookings/${params}`, {
+    const result = await fetch(`${api}/bookings/${params}`, {
       method: 'DELETE',
     });
   } catch (err) {
